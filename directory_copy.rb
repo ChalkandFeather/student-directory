@@ -41,11 +41,22 @@ def initial_letter_match(students)
    end
   end  
 
+  def short_name(students)
+    short_names = []
+    puts "This is a list of students whose names are shorter than 12 characters."
+     students.each.with_index(1) do |student, index|
+       if student[:name].length < 12 
+        short_names << (student[:name])
+       puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+       puts "Overall we have #{short_names.count} great students"
+      end
+     end
+    end    
+
 def print_footer(students)
   puts "Overall we have #{students.count} great students"
 end  
 
 students = input_students
-initial_letter_match(students)
+short_name(students)
 print_header
-print_footer(students)
