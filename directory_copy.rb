@@ -23,12 +23,17 @@ def print_header
   puts "-------------"
 end
 
-
+#while array
+ 
 def print(students)
-  students.each.with_index(1) do |student, index|
+count = 0
+  while count < students.length do 
+    students.each.with_index(1) do |student, index|
     puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
-  end  
-end
+    count += 1
+    end
+  end
+end  
 
 # method to identify students with name starting with a selected letter
 def initial_letter_match(students)
@@ -57,6 +62,8 @@ def print_footer(students)
   puts "Overall we have #{students.count} great students"
 end  
 
+
 students = input_students
-short_name(students)
 print_header
+print(students)
+print_footer(students)
