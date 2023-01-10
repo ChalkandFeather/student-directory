@@ -5,14 +5,21 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
+  #if cohort is empty puts "2022"
+  #while not empty 
   #while the name is not empty,repeat this code
 while !name.empty? do
   puts "Add student hobby: "
   hobby = gets.chomp
   puts "Enter student's favourite sound: "
   sound = gets.chomp
+  puts "Please enter your cohort"
+  cohort = gets.chomp
+  if cohort == nil
+    puts "2022"
+  end
   # add the student hash to the array
-  students << {name: name, hobby: hobby, sound: sound, cohort: :november}
+  students << {name: name, hobby: hobby, sound: sound, cohort: cohort}
   puts "Now we have #{students.count} students"
   # get another name from the user
   name = gets.chomp 
@@ -62,7 +69,7 @@ def initial_letter_match(students)
     end    
 
 def print_footer(students)
-  puts "Overall we have #{students.count} great students"
+  puts ("Overall we have #{students.count} great students").center(75)
 end  
 
 students = input_students
