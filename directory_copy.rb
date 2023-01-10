@@ -9,8 +9,10 @@ def input_students
 while !name.empty? do
   puts "Add student hobby: "
   hobby = gets.chomp
+  puts "Enter student's favourite sound: "
+  sound = gets.chomp
   # add the student hash to the array
-  students << {name: name, hobby: hobby, cohort: :november}
+  students << {name: name, hobby: hobby, sound: sound, cohort: :november}
   puts "Now we have #{students.count} students"
   # get another name from the user
   name = gets.chomp 
@@ -20,8 +22,8 @@ end
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts ("The students of Villains Academy").center(75)
+  puts ("-------------").center(75)
 end
 
 #while array
@@ -30,7 +32,7 @@ def print(students)
 count = 0
   while count < students.length do 
     students.each.with_index(1) do |student, index|
-    puts "#{index}. #{student[:name]}. Who's hobby is #{student[:hobby]}. (#{student[:cohort]} cohort.)"
+    puts "#{index}. #{student[:name]}. Their hobby is #{student[:hobby]}, and their favourite sound is #{student[:sound]}. (#{student[:cohort]} cohort.)"
     count += 1
     end
   end
