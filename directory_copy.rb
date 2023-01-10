@@ -15,18 +15,32 @@ while !name.empty? do
   sound = gets.chomp
   puts "Please enter your cohort"
   cohort = gets.chomp
-  if cohort == nil
-    puts "2022"
+  
+  cohort = :november if cohort.empty?
+
+    until cohort_spelling(cohort) == true
+      puts "Please ensure you have correct spelling for your cohort month"
+      cohort = gets.chomp
   end
   # add the student hash to the array
   students << {name: name, hobby: hobby, sound: sound, cohort: cohort}
-  puts "Now we have #{students.count} students"
-  # get another name from the user
+ # get another name from the user
+  if students.count == 1
+    puts "Now we have #{students.count} student"
+  else
+    puts "Now we have #{students.count} students"
+  end
   name = gets.chomp 
 end  
   # return the array of students
   students
 end
+
+def cohort_spelling(month)
+  require "date"
+  Date::MONTHNAMES.include?(month.capitalize)
+end
+
 
 def print_header
   puts ("The students of Villains Academy").center(75)
@@ -69,9 +83,13 @@ def initial_letter_match(students)
     end    
 
 def print_footer(students)
-  puts ("Overall we have #{students.count} great students").center(75)
-end  
-
+  if students.count == 1
+    puts ("Overall we have #{students.count} great student").center(75)
+  elsif
+    puts ("Overall we have #{students.count} great students").center(75)
+  end  
+end
+#it's necessary to call the method to invoke the block of code
 students = input_students
 print(students)
 print_header
