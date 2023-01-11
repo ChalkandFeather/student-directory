@@ -6,7 +6,6 @@ def input_students
   # get the first name
   #name = gets.chomp.capitalize
   name = gets.delete("\n").capitalize
-  #if cohort is empty puts "2022"
   #while not empty 
   #while the name is not empty,repeat this code
 while !name.empty? do
@@ -71,22 +70,19 @@ def initial_letter_match(students)
      end
    end
   end  
-
-  def short_name(students)
-    short_names = []
-    puts "This is a list of students whose names are shorter than 12 characters."
-     students.each.with_index(1) do |student, index|
-        if student[:name].length < 12 
-        short_names << (student[:name])
-        puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
-        
-        ##if short_names.count == 1
-        puts "Overall we have #{short_names.count} great student with a name shorter than 12 characters."
-        elsif 
-        puts "Overall we have #{short_names.count} great students with a name shorter than 12 characters."
-      end
-      end
-    end  
+#currently puts'ing "Overall we have .... " How do I eliminate the puts'ing of both 
+#Overall statements.
+def short_name(students)
+  short_names = []
+  puts "This is a list of students whose names are shorter than 12 characters."
+   students.each.with_index(1) do |student, index|
+     if student[:name].length < 12 
+      short_names << (student[:name])
+     puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+     puts "Overall we have #{short_names.count} great students"
+    end
+   end
+  end  
   ###would like to do cohort groups with a months array? rather than individual months conditionals
   ##currently puts'ing for individual student. "From February cohort, we have name, name"
   def cohort_group(students)
@@ -122,7 +118,8 @@ end
 end
 end
 
- 
+#to run short name_students method would require edit to print_footer so not to print overall students
+#message(because the count refers to all students- not just short_names) 
 def print_footer(students)
   if students.count == 1
     puts ("Overall we have #{students.count} great student").center(75)
@@ -130,9 +127,9 @@ def print_footer(students)
     puts ("Overall we have #{students.count} great students").center(75)
   end  
 end
-#it's necessary to call the method to invoke the block of cod
+#it's necessary to call the method to invoke the block of code
 students = input_students
-cohort_group(students)
+short_name(students)
 print(students)
 print_header
 print_footer(students)
