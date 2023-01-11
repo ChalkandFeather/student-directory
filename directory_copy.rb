@@ -4,7 +4,8 @@ def input_students
   #create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  #name = gets.chomp.capitalize
+  name = gets.delete("\n").capitalize
   #if cohort is empty puts "2022"
   #while not empty 
   #while the name is not empty,repeat this code
@@ -14,7 +15,7 @@ while !name.empty? do
   puts "Enter student's favourite sound: "
   sound = gets.chomp
   puts "Please enter your cohort"
-  cohort = gets.chomp
+  cohort = gets.chomp.capitalize
   
   cohort = :november if cohort.empty?
 
@@ -26,9 +27,9 @@ while !name.empty? do
   students << {name: name, hobby: hobby, sound: sound, cohort: cohort}
  # get another name from the user
   if students.count == 1
-    puts "Now we have #{students.count} student"
+    puts "Now we have #{students.count} student. Enter the next student's name, or hit return."
   else
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{students.count} students. Enter the next student's name, or hit return."
   end
   name = gets.chomp 
 end  
@@ -36,9 +37,10 @@ end
   students
 end
 
+
 def cohort_spelling(month)
   require "date"
-  Date::MONTHNAMES.include?(month.capitalize)
+  Date::MONTHNAMES.include?(month)
 end
 
 
@@ -74,14 +76,53 @@ def initial_letter_match(students)
     short_names = []
     puts "This is a list of students whose names are shorter than 12 characters."
      students.each.with_index(1) do |student, index|
-       if student[:name].length < 12 
+        if student[:name].length < 12 
         short_names << (student[:name])
-       puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
-       puts "Overall we have #{short_names.count} great students"
+        puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+        
+        ##if short_names.count == 1
+        puts "Overall we have #{short_names.count} great student with a name shorter than 12 characters."
+        elsif 
+        puts "Overall we have #{short_names.count} great students with a name shorter than 12 characters."
       end
-     end
-    end    
+      end
+    end  
+  ###would like to do cohort groups with a months array? rather than individual months conditionals
+  ##currently puts'ing for individual student. "From February cohort, we have name, name"
+  def cohort_group(students)
+    cohort_array = []
+    puts "Students arranged into cohorts"
+    students.each do |student|
+      cohort_array << (student[:name])
+      if student[:cohort] == "January"
+    puts "From the January cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "February"
+    puts "From the February cohort, we have  #{student[:name]}."
+  elsif student[:cohort] == "March"
+    puts "From the March cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "April"
+    puts "From the April cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "May"
+    puts "From the May cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "June"
+    puts "From the June cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "July"
+    puts "From the July cohort, we have  #{student[:name]}."
+  elsif student[:cohort] == "August"
+    puts "From the August cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "September"
+    puts "From the September cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "October"
+    puts "From the October cohort, we have #{student[:name]}."
+  elsif student[:cohort] == "November"
+    puts "From the November cohort, we have #{student[:name]}."   
+  elsif student[:cohort] == "December"
+    puts "From the December cohort, we have #{student[:name]}."   
+end
+end
+end
 
+ 
 def print_footer(students)
   if students.count == 1
     puts ("Overall we have #{students.count} great student").center(75)
@@ -89,8 +130,9 @@ def print_footer(students)
     puts ("Overall we have #{students.count} great students").center(75)
   end  
 end
-#it's necessary to call the method to invoke the block of code
+#it's necessary to call the method to invoke the block of cod
 students = input_students
+cohort_group(students)
 print(students)
 print_header
 print_footer(students)
