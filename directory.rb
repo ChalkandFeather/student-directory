@@ -1,3 +1,12 @@
+def load_students
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+    name, cohort = line.chomp.split(',')
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
+
 def save_students
   #open the file for writing
   file = File.open("students.csv", "w")
@@ -50,6 +59,7 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list of students.csv"
+  puts "4. Load the list from students.csv"
   puts "9 Exit"
   #read the input and save it into a variable (selection)
  end
@@ -70,6 +80,8 @@ def process(selection)
       show_students
     when "3"
       save_students  
+    when "4"
+      load_students  
     when "9"
     exit #this will cause the program to terminate
     else
