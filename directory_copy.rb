@@ -1,3 +1,20 @@
+def save_students
+  #open the file for writing
+  file = File.open("students.csv", "w")
+  #iterate over the array of students
+  @students.each do |student|
+    student_data = [student[:name], student[:cohort]]
+    #will look like Dr. Hannibal Lecter,november
+    csv_line = student_data.join(",")
+    #will be joined as follows ["Dr. Hannibal Lecter", :november]
+    file.puts csv_line
+    #puts writes the above line to the file
+  end
+  file.close
+  #everytime a file is opened -it needs to be closed.
+end  
+
+
 @students = []
 
 def input_students
@@ -32,6 +49,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save the list of students.csv"
   puts "9 Exit"
   #read the input and save it into a variable (selection)
  end
@@ -50,6 +68,8 @@ def process(selection)
       input_students
     when "2"
       show_students
+    when "3"
+      save_students  
     when "9"
     exit #this will cause the program to terminate
     else
