@@ -127,9 +127,35 @@ def print_footer(students)
     puts ("Overall we have #{students.count} great students").center(75)
   end  
 end
+
+#menu to provide user with list of options
+#print the menu adn ask the user what to do
+def interactive_menu
+  students = []
+  loop do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9 Exit"
+#read the input and save it into a variaale (selection)
+  selection = gets.chomp
+#do what the user has asked  
+  case selection
+    when "1"
+    #input the students
+    students = input_students
+    when "2"
+    #show the students  
+    print_header
+    print(students)
+    print_footer(students)
+    when "9"
+    exit #this will cause the program to terminate
+    else
+    puts "I don't know what you meant, try again"  
+   end   
+  end 
+end 
+
+
 #it's necessary to call the method to invoke the block of code
-students = input_students
-short_name(students)
-print(students)
-print_header
-print_footer(students)
+interactive_menu
